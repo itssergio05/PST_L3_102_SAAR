@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "author": "Professor Marcos Costa",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-mini", "id": "bb1", "top": 27.4, "left": -40.8, "attrs": {} },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -9.6, "left": -311.96, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -76.5,
+      "left": 13.8,
+      "attrs": { "temperature": "35.2", "humidity": "48.5" }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb1",
+      "top": -293.6,
+      "left": -56.5,
+      "attrs": { "common": "cathode" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "bb1:7t.c", "esp:3V3", "red", [ "v0", "h-192", "v-96", "h-182.4", "v57.6" ] ],
+    [ "esp:GND.2", "bb1:10t.c", "black", [ "v-115.2", "h364.8", "v163.2" ] ],
+    [ "bb1:8t.c", "esp:4", "purple", [ "v0" ] ],
+    [ "rgb1:COM", "esp:GND.2", "black", [ "v47.6", "h172.9" ] ],
+    [ "rgb1:R", "esp:25", "red", [ "v48", "h-326.4", "v288" ] ],
+    [ "rgb1:G", "esp:26", "limegreen", [ "v86.4", "h-392.3", "v268.8" ] ],
+    [ "rgb1:B", "esp:27", "blue", [ "v134.4", "h-440", "v249.6" ] ],
+    [ "dht1:VCC", "bb1:7t.a", "", [ "$bb" ] ],
+    [ "dht1:SDA", "bb1:8t.a", "", [ "$bb" ] ],
+    [ "dht1:NC", "bb1:9t.a", "", [ "$bb" ] ],
+    [ "dht1:GND", "bb1:10t.a", "", [ "$bb" ] ]
+  ],
+  "dependencies": {}
+}
